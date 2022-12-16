@@ -6,6 +6,14 @@ var timerInterval = '';
 startButton.setAttribute("data-state", "stopped")
 
 function toggleButton() {
+    timerInterval = setInterval(function () {
+        secondsLeft--;
+        testKnowledge.innerText = "Time Left: " + secondsLeft;
+        if (secondsLeft === 0) {
+            clearInterval(timerInterval);
+            testKnowledge.innerText = "Whoa, dude! Better study more!"
+        }
+    }, 1000)
     if (startButton.dataset.state === "stopped") {
         console.log("checking it's running")
         startButton.setAttribute("data-state", "running");
@@ -19,20 +27,33 @@ function toggleButton() {
 
     }
 }
-function setTimer() {
-    secondsLeft = 60;
-    timerInterval = setInterval(function () {
-        secondsLeft--;
-        testKnowledge.innerText = secondsLeft;
-        if (secondsLeft === 0) {
-            clearInterval(timerInterval);
-            testKnowledge.innerText = "Whoa, dude! Better study more!"
-        }
-    }, 1000)
-}
 
 startButton.addEventListener("click", toggleButton);
 
 
-// TODO turn the start button into the stop button when it is pressed after initializing
 // TODO make another JS file with the answers and questions in them to be referenced
+
+var question1 = {
+    question: "Which of the following is not a primitive type in JavaScript?",
+    choice1: "String",
+    choice2: "Boolean",
+    choice3: "Script",
+    choice4: "Null",
+    answer: "Script"
+}
+
+var question2 = {
+    question: "Which of the following is the right syntax for CSS?",
+    choice1: "color: 'blue';",
+    choice2: "'background': white;",
+    choice3: "font-family = serif;",
+    choice4: "'line-height': '10px';"
+}
+
+var question3 = {
+    question: "Which of the following moves elements along the main axis in CSS?",
+    choice1: "justify-items",
+    choice2: "align-content",
+    choice3: "center-content",
+    choice4: "justify-content"
+}
