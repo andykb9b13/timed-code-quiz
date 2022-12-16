@@ -46,6 +46,7 @@ body {
 .question-card {
     display: flex;
     flex-direction: column;
+    align-items: center;
     padding: 5%;
 
 }
@@ -56,9 +57,19 @@ body {
     font-family: var(--mainFonts);
 }
 
-.choice {
+.choice-box {
     font-size: 1.2em;
     font-family: var(--mainFonts);
+    width: 60%;
+    list-style: none;
+}
+
+.choice {
+    margin: 8px;
+    background-color: var(--color1);
+    padding-left: 10px;
+    border-radius: 5px;
+
 }
 
 .card-outer-box {

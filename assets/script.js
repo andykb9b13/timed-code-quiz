@@ -47,7 +47,8 @@ var question2 = {
     choice1: "color: 'blue';",
     choice2: "'background': white;",
     choice3: "font-family = serif;",
-    choice4: "'line-height': '10px';"
+    choice4: "'line-height': '10px';",
+    answer: "color: 'blue';"
 }
 
 var question3 = {
@@ -55,5 +56,6 @@ var question3 = {
     choice1: "justify-items",
     choice2: "align-content",
     choice3: "center-content",
-    choice4: "justify-content"
+    choice4: "justify-content",
+    answer: "justify-content"
 }
