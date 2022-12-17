@@ -65,19 +65,14 @@ var choice1 = document.querySelector("#choice1");
 var choice2 = document.querySelector("#choice2");
 var choice3 = document.querySelector("#choice3");
 var choice4 = document.querySelector("#choice4");
-var guessForm = document.querySelector(".question-card")
-var displayAnswer = document.createElement('p')
-var realAnswer = questions[0].answer;
-var nextButton = document.querySelector("#next-button")
+var guessForm = document.querySelector(".question-card");
+var displayAnswer = document.createElement('p');
+var nextButton = document.querySelector("#next-button");
 var score = 0;
-choice1.innerText = questions[0].choice1;
-choice2.innerText = questions[0].choice2;
-choice3.innerText = questions[0].choice3;
-choice4.innerText = questions[0].choice4;
-
-nextButton.style.display = "none"
+var question = document.getElementById("question");
 
 
+// nextButton.style.display = "none"
 
 function rightAnswer() {
     displayAnswer.innerText = "CORRECT!";
@@ -92,48 +87,75 @@ function wrongAnswer() {
     nextButton.style.display = "contents"
 }
 
-function checkAnswer1() {
-    if (questions[0].choice1 === realAnswer) {
+function checkAnswer1(i) {
+    if (questions[i].choice1 === questions[i].answer) {
         rightAnswer()
     } else {
         wrongAnswer()
     }
 }
 
-function checkAnswer2() {
-    if (questions[0].choice2 === realAnswer) {
+function checkAnswer2(i) {
+    if (questions[i].choice2 === questions[i].answer) {
         rightAnswer()
     } else {
         wrongAnswer()
     }
 }
 
-function checkAnswer3() {
-    if (questions[0].choice3 === realAnswer) {
+function checkAnswer3(i) {
+    if (questions[i].choice3 === questions[i].answer) {
         rightAnswer()
     } else {
         wrongAnswer()
     }
 }
 
-function checkAnswer4() {
-    if (questions[0].choice4 === realAnswer) {
+function checkAnswer4(i) {
+    if (questions[i].choice4 === questions[i].answer) {
         rightAnswer()
     } else {
         wrongAnswer()
     }
 }
+
+
 
 startButton.addEventListener("click", toggleButton);
+
+// function questionNum() {
+
+// }
+var i = 0;
+
+function indexAdd() {
+    i++;
+    return i
+}
+
+function nextQuestion() {
+    // var i = Math.floor(Math.random() * questions.length);
+
+    question.innerText = questions[i].question;
+    choice1.innerText = questions[i].choice1;
+    choice2.innerText = questions[i].choice2;
+    choice3.innerText = questions[i].choice3;
+    choice4.innerText = questions[i].choice4;
+    // need to add 1 to the array index each time the next button is pressed. 
+    // maybe make a random selector if you have time.
+    console.log("question" + i);
+    i++;
+}
+
+nextQuestion(0)
+
 choice1.addEventListener("click", checkAnswer1);
 choice2.addEventListener("click", checkAnswer2);
 choice3.addEventListener("click", checkAnswer3);
 choice4.addEventListener("click", checkAnswer4);
 
-function nextQuestion() {
-    // need to add 1 to the array index each time the next button is pressed. 
-    // maybe make a random selector if you have time.
-}
+nextButton.addEventListener("click", nextQuestion)
+
 
 // nextButton.addEventListener("click",)
 
