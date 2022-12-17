@@ -58,6 +58,70 @@ let questions = [
         choice3: "center-content",
         choice4: "justify-content",
         answer: "justify-content"
+    },
+    {
+        question: "Which is NOT a relative unit of measurement?",
+        choice1: "4em",
+        choice2: "2.5rem",
+        choice3: "75px",
+        choice4: "40%",
+        answer: "75px"
+    },
+    {
+        question: "Which is the adjacent selector?",
+        choice1: "+",
+        choice2: "<",
+        choice3: ">",
+        choice4: "=",
+        answer: "+"
+    },
+    {
+        question: "Which of the following moves elements along the main axis in CSS?",
+        choice1: "justify-items",
+        choice2: "align-content",
+        choice3: "center-content",
+        choice4: "justify-content",
+        answer: "justify-content"
+    },
+    {
+        question: "Which of the following has the highest specificity?",
+        choice1: "#chrome",
+        choice2: ".chrome",
+        choice3: "chrome",
+        choice4: ".chrome p",
+        answer: "#chrome"
+    },
+    {
+        question: "Which property adjusts the space between elements?",
+        choice1: "border",
+        choice2: "margin",
+        choice3: "padding",
+        choice4: "transparency",
+        answer: "margin"
+    },
+    {
+        question: "Which variable's value cannot be changed once declared?",
+        choice1: "const",
+        choice2: "let",
+        choice3: "var",
+        choice4: "span",
+        answer: "const"
+    },
+    {
+        question: "Which method extracts a portion of a string without altering the original and returns it as a new string?",
+        choice1: "trim()",
+        choice2: "replace()",
+        choice3: "slice()",
+        choice4: "splice()",
+        answer: "slice()"
+    },
+    {
+        question: "Which method removes the decimal from a number?",
+        choice1: "Math.random()",
+        choice2: "console.log()",
+        choice3: "Math.floor()",
+        choice4: "indexOf()",
+        answer: "Math.floor()"
     }
 ];
 
