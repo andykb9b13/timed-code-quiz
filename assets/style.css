@@ -76,7 +76,7 @@ body {
 
 .choice:hover {
     transform: translate(-2px, -2px);
-
+    box-shadow: 2px 2px 8px var(--color3);
     color: var(--color5);
 }
 

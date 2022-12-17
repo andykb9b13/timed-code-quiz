@@ -69,52 +69,55 @@ var choice4 = document.querySelector("#choice4");
 var guessForm = document.querySelector(".question-card")
 var displayAnswer = document.createElement('p')
 var realAnswer = question1.answer;
+var nextButton = document.querySelector("#next-button")
 choice1.innerText = question1.choice1;
 choice2.innerText = question1.choice2;
 choice3.innerText = question1.choice3;
 choice4.innerText = question1.choice4;
 
+nextButton.style.display = "none"
+
+function rightAnswer() {
+    displayAnswer.innerText = "CORRECT!";
+    guessForm.appendChild(displayAnswer);
+}
+
+function wrongAnswer() {
+    displayAnswer.innerText = "WRONG!!!!";
+    guessForm.appendChild(displayAnswer);
+}
+
 function checkAnswer1() {
     if (question1.choice1 === realAnswer) {
-        displayAnswer.innerText = "Correct!" + realAnswer;
-        guessForm.appendChild(displayAnswer);
+        rightAnswer()
     } else {
-        displayAnswer.innerText = "WRONG!!!!";
-        guessForm.appendChild(displayAnswer);
+        wrongAnswer()
     }
 }
 
 function checkAnswer2() {
     if (question1.choice2 === realAnswer) {
-        displayAnswer.innerText = "Correct!" + realAnswer;
-        guessForm.appendChild(displayAnswer);
+        rightAnswer()
     } else {
-        displayAnswer.innerText = "WRONG!!!!";
-        guessForm.appendChild(displayAnswer);
+        wrongAnswer()
     }
 }
 
 function checkAnswer3() {
     if (question1.choice3 === realAnswer) {
-        displayAnswer.innerText = "Correct!" + realAnswer;
-        guessForm.appendChild(displayAnswer);
+        rightAnswer()
     } else {
-        displayAnswer.innerText = "WRONG!!!!";
-        guessForm.appendChild(displayAnswer);
+        wrongAnswer()
     }
 }
 
 function checkAnswer4() {
     if (question1.choice4 === realAnswer) {
-        displayAnswer.innerText = "Correct!" + realAnswer;
-        guessForm.appendChild(displayAnswer);
+        rightAnswer()
     } else {
-        displayAnswer.innerText = "WRONG!!!!";
-        guessForm.appendChild(displayAnswer);
+        wrongAnswer()
     }
 }
-
-
 
 choice1.addEventListener("click", checkAnswer1);
 choice2.addEventListener("click", checkAnswer2);
