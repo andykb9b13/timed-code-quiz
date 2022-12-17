@@ -28,7 +28,6 @@ function toggleButton() {
     }
 }
 
-startButton.addEventListener("click", toggleButton);
 
 // TODO the choice chosen will change color depending on if it's right or wrong
 // TODO The answer will show up on the bottom of the screen.
@@ -70,6 +69,7 @@ var guessForm = document.querySelector(".question-card")
 var displayAnswer = document.createElement('p')
 var realAnswer = question1.answer;
 var nextButton = document.querySelector("#next-button")
+var score = 0;
 choice1.innerText = question1.choice1;
 choice2.innerText = question1.choice2;
 choice3.innerText = question1.choice3;
@@ -80,11 +80,14 @@ nextButton.style.display = "none"
 function rightAnswer() {
     displayAnswer.innerText = "CORRECT!";
     guessForm.appendChild(displayAnswer);
+    nextButton.style.display = "contents";
+    score++;
 }
 
 function wrongAnswer() {
     displayAnswer.innerText = "WRONG!!!!";
     guessForm.appendChild(displayAnswer);
+    nextButton.style.display = "contents"
 }
 
 function checkAnswer1() {
@@ -119,9 +122,15 @@ function checkAnswer4() {
     }
 }
 
+startButton.addEventListener("click", toggleButton);
 choice1.addEventListener("click", checkAnswer1);
 choice2.addEventListener("click", checkAnswer2);
 choice3.addEventListener("click", checkAnswer3);
 choice4.addEventListener("click", checkAnswer4);
 
+function nextQuestion() {
+
+}
+
+// nextButton.addEventListener("click",)
 
