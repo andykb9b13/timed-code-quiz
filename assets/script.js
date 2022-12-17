@@ -30,9 +30,11 @@ function toggleButton() {
 
 startButton.addEventListener("click", toggleButton);
 
-
+// TODO the choice chosen will change color depending on if it's right or wrong
+// TODO The answer will show up on the bottom of the screen.
+// TODO A next button will show up on the screen
+// TODO There needs to be a counter on the screen for current wins and high score
 // TODO make another JS file with the answers and questions in them to be referenced
-
 var question1 = {
     question: "Which of the following is not a primitive type in JavaScript?",
     choice1: "String",
@@ -59,3 +61,64 @@ var question3 = {
     choice4: "justify-content",
     answer: "justify-content"
 }
+
+var choice1 = document.querySelector("#choice1");
+var choice2 = document.querySelector("#choice2");
+var choice3 = document.querySelector("#choice3");
+var choice4 = document.querySelector("#choice4");
+var guessForm = document.querySelector(".question-card")
+var displayAnswer = document.createElement('p')
+var realAnswer = question1.answer;
+choice1.innerText = question1.choice1;
+choice2.innerText = question1.choice2;
+choice3.innerText = question1.choice3;
+choice4.innerText = question1.choice4;
+
+function checkAnswer1() {
+    if (question1.choice1 === realAnswer) {
+        displayAnswer.innerText = "Correct!" + realAnswer;
+        guessForm.appendChild(displayAnswer);
+    } else {
+        displayAnswer.innerText = "WRONG!!!!";
+        guessForm.appendChild(displayAnswer);
+    }
+}
+
+function checkAnswer2() {
+    if (question1.choice2 === realAnswer) {
+        displayAnswer.innerText = "Correct!" + realAnswer;
+        guessForm.appendChild(displayAnswer);
+    } else {
+        displayAnswer.innerText = "WRONG!!!!";
+        guessForm.appendChild(displayAnswer);
+    }
+}
+
+function checkAnswer3() {
+    if (question1.choice3 === realAnswer) {
+        displayAnswer.innerText = "Correct!" + realAnswer;
+        guessForm.appendChild(displayAnswer);
+    } else {
+        displayAnswer.innerText = "WRONG!!!!";
+        guessForm.appendChild(displayAnswer);
+    }
+}
+
+function checkAnswer4() {
+    if (question1.choice4 === realAnswer) {
+        displayAnswer.innerText = "Correct!" + realAnswer;
+        guessForm.appendChild(displayAnswer);
+    } else {
+        displayAnswer.innerText = "WRONG!!!!";
+        guessForm.appendChild(displayAnswer);
+    }
+}
+
+
+
+choice1.addEventListener("click", checkAnswer1);
+choice2.addEventListener("click", checkAnswer2);
+choice3.addEventListener("click", checkAnswer3);
+choice4.addEventListener("click", checkAnswer4);
+
+
