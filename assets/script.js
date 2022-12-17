@@ -151,7 +151,8 @@ function wrongAnswer() {
     nextButton.style.display = "contents"
 }
 
-function checkAnswer1(i) {
+function checkAnswer1() {
+    // var i = nextQuestion;
     if (questions[i].choice1 === questions[i].answer) {
         rightAnswer()
     } else {
@@ -159,7 +160,7 @@ function checkAnswer1(i) {
     }
 }
 
-function checkAnswer2(i) {
+function checkAnswer2() {
     if (questions[i].choice2 === questions[i].answer) {
         rightAnswer()
     } else {
@@ -167,7 +168,7 @@ function checkAnswer2(i) {
     }
 }
 
-function checkAnswer3(i) {
+function checkAnswer3() {
     if (questions[i].choice3 === questions[i].answer) {
         rightAnswer()
     } else {
@@ -175,7 +176,7 @@ function checkAnswer3(i) {
     }
 }
 
-function checkAnswer4(i) {
+function checkAnswer4() {
     if (questions[i].choice4 === questions[i].answer) {
         rightAnswer()
     } else {
@@ -192,14 +193,9 @@ startButton.addEventListener("click", toggleButton);
 // }
 var i = 0;
 
-function indexAdd() {
-    i++;
-    return i
-}
-
 function nextQuestion() {
     // var i = Math.floor(Math.random() * questions.length);
-
+    i++;
     question.innerText = questions[i].question;
     choice1.innerText = questions[i].choice1;
     choice2.innerText = questions[i].choice2;
@@ -207,11 +203,11 @@ function nextQuestion() {
     choice4.innerText = questions[i].choice4;
     // need to add 1 to the array index each time the next button is pressed. 
     // maybe make a random selector if you have time.
-    console.log("question" + i);
-    i++;
+    console.log(questions[i]);
+    return i;
 }
 
-nextQuestion(0)
+nextQuestion(i)
 
 choice1.addEventListener("click", checkAnswer1);
 choice2.addEventListener("click", checkAnswer2);
