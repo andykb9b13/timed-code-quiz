@@ -151,7 +151,40 @@ let questions = [
         choice3: "Math.floor()",
         choice4: "indexOf()",
         answer: "Math.floor()"
+    },
+    {
+        question: "How many times will this loop run? for (let i = 0; i < 5; i++)",
+        choice1: "3",
+        choice2: "10",
+        choice3: "15",
+        choice4: "5",
+        answer: "5"
+    },
+    {
+        question: "Which of the following will create an infinite loop?",
+        choice1: "for (let i = 0; i < 6; i++)",
+        choice2: "for (let i = 0; i > 5; i++)",
+        choice3: "for (let i = 6; i > 5; i++)",
+        choice4: "for (let i = 4; i > 0; i--)",
+        answer: "for (let i = 6; i > 5; i++)"
+    },
+    {
+        question: "Which of the following is the conditon for the loop? for (let i = 0; i < 5; i++)",
+        choice1: "i < 5",
+        choice2: "let i = 0",
+        choice3: "i++",
+        choice4: "for",
+        answer: "i < 5"
+    },
+    {
+        question: "Which of the following is true?",
+        choice1: "5 === '5'",
+        choice2: "2 != '2'",
+        choice3: "true !== false",
+        choice4: "5 == 'five'",
+        answer: "2 != '2'"
     }
+
 ];
 
 
