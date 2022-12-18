@@ -20,12 +20,11 @@ startButton.setAttribute("data-state", "stopped");
 currentScore.innerText = "Current Score: " + score;
 nextButton.style.display = "none"
 
-// TODO disable the question display and eventListeners when the time runs out or the reset button is pressed.
-// TODO if the reset button is pressed, the current score goes down to 0.
-// TODO need to disable the choices once one has been clicked. data-sate?
+// TODO disable the eventListeners when the time runs out or the reset button is pressed.
 
 function playGame() {
     if (startButton.dataset.state === "running") {
+        enableChoices()
         console.log("checking it's stopping")
         startButton.setAttribute("data-state", "stopped");
         startButton.style.backgroundColor = "#61E786";
@@ -47,6 +46,7 @@ function playGame() {
             secondsLeft--;
             testKnowledge.innerText = "Time Left: " + secondsLeft;
             if (secondsLeft <= 0) {
+                disableChoices()
                 clearInterval(timerInterval);
                 testKnowledge.innerText = "Whoa, dude! Better study more!"
                 localStorage.getItem("highScore")
@@ -275,6 +275,7 @@ function checkAnswer4() {
 
 function nextQuestion() {
     // var i = Math.floor(Math.random() * questions.length);
+    // TODO create a random selector that checks if the index # selected is in an array of pushed index #s
     enableChoices()
     choice1.style.backgroundColor = "#9792E3"
     choice2.style.backgroundColor = "#9792E3"
