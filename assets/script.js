@@ -46,7 +46,7 @@ function playGame() {
             }
             secondsLeft--;
             testKnowledge.innerText = "Time Left: " + secondsLeft;
-            if (secondsLeft === 0) {
+            if (secondsLeft <= 0) {
                 clearInterval(timerInterval);
                 testKnowledge.innerText = "Whoa, dude! Better study more!"
                 localStorage.getItem("highScore")
