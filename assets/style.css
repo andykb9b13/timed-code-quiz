@@ -47,6 +47,7 @@ p {
     text-align: center;
     margin-bottom: 10px;
     margin-top: 10px;
+    width: 75%;
 }
 
 .score-timer-area {
@@ -56,7 +57,6 @@ p {
 .score-area {
     display: flex;
     flex-direction: column;
-    margin-right: 50px;
 }
 
 .score-area p {
@@ -83,6 +83,7 @@ p {
     font-family: var(--mainFonts);
     width: 60%;
     list-style: none;
+    padding: 0px;
 }
 
 .choice {
@@ -135,4 +136,39 @@ p {
 
 #next-button button {
     margin-bottom: 10px;
+}
+
+@media screen and (max-width:800px) {
+    #navbar h1 {
+        font-size: 4em;
+    }
+
+    #testKnowledge {
+        font-size: 2em;
+    }
+
+    .score-area p {
+        font-size: 1em;
+    }
+}
+
+@media screen and (max-width:550px) {
+    .score-timer-area {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #navbar h1 {
+        font-size: 3em;
+    }
+
+    .question-card p {
+        font-size: 1em;
+    }
+
+    .choice {
+        font-size: 0.8em;
+    }
 }

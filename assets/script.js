@@ -62,6 +62,7 @@ function playGame() {
 
 
 // TODO make another JS file with the answers and questions in them to be referenced
+// TODO need to change the questions to be ONLY about JavaScript concepts
 let questions = [
     {
         question: "Which of the following is not a primitive type in JavaScript?",
