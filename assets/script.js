@@ -16,26 +16,29 @@ var timerInterval = '';
 startButton.setAttribute("data-state", "stopped")
 
 function toggleButton() {
-    nextQuestion(i)
-    timerInterval = setInterval(function () {
-        secondsLeft--;
-        testKnowledge.innerText = "Time Left: " + secondsLeft;
-        if (secondsLeft === 0) {
-            clearInterval(timerInterval);
-            testKnowledge.innerText = "Whoa, dude! Better study more!"
-        }
-    }, 1000)
-    if (startButton.dataset.state === "stopped") {
-        console.log("checking it's running")
-        startButton.setAttribute("data-state", "running");
-        startButton.style.backgroundColor = "red";
-        startButton.innerText = "Stop"
-    } else if (startButton.dataset.state === "running") {
+    if (startButton.dataset.state === "running") {
         console.log("checking it's stopping")
         startButton.setAttribute("data-state", "stopped");
         startButton.style.backgroundColor = "#61E786";
         startButton.innerText = "Start";
+        clearInterval(timerInterval);
+    } else {
+        nextQuestion(i)
+        timerInterval = setInterval(function () {
+            if (startButton.dataset.state === "stopped") {
+                console.log("checking it's running")
+                startButton.setAttribute("data-state", "running");
+                startButton.style.backgroundColor = "red";
+                startButton.innerText = "Reset"
+            }
+            secondsLeft--;
+            testKnowledge.innerText = "Time Left: " + secondsLeft;
+            if (secondsLeft === 0) {
+                clearInterval(timerInterval);
+                testKnowledge.innerText = "Whoa, dude! Better study more!"
+            }
 
+        }, 1000)
     }
 }
 
