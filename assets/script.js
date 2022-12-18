@@ -9,12 +9,11 @@ var nextButton = document.querySelector("#next-button");
 var score = 0;
 var currentScore = document.getElementById("current-score");
 var question = document.getElementById("question");
-var i = 0;
+var i = -1;
 var secondsLeft = 60;
 var testKnowledge = document.getElementById('testKnowledge');
 var startButton = document.getElementById('start-button');
 var timerInterval = '';
-localStorage.setItem("highScore", score);
 var highScore = localStorage.getItem("highScore");
 var highScoreDisplay = document.getElementById("high-score");
 startButton.setAttribute("data-state", "stopped");
@@ -25,7 +24,7 @@ nextButton.style.display = "none"
 // TODO if the reset button is pressed, the current score goes down to 0.
 // TODO need to disable the choices once one has been clicked. data-sate?
 
-function toggleButton() {
+function playGame() {
     if (startButton.dataset.state === "running") {
         console.log("checking it's stopping")
         startButton.setAttribute("data-state", "stopped");
@@ -187,8 +186,6 @@ let questions = [
 
 ];
 
-
-
 function rightAnswer() {
     displayAnswer.innerText = "CORRECT!";
     guessForm.appendChild(displayAnswer);
@@ -204,48 +201,81 @@ function wrongAnswer() {
     secondsLeft -= 5
 }
 
+function disableChoices() {
+    choice1.setAttribute("state", "disabled")
+    choice2.setAttribute("state", "disabled")
+    choice3.setAttribute("state", "disabled")
+    choice4.setAttribute("state", "disabled")
+}
+
+function enableChoices() {
+    choice1.setAttribute("state", "enabled")
+    choice2.setAttribute("state", "enabled")
+    choice3.setAttribute("state", "enabled")
+    choice4.setAttribute("state", "enabled")
+}
+
+enableChoices()
+// Trying to write an "enable/disable" condition to keep buttons event listeners from firing once one answer is selected.
 function checkAnswer1() {
-    if (questions[i].choice1 === questions[i].answer) {
-        rightAnswer()
-        choice1.style.backgroundColor = "#61E786"
+    if (choice1.getAttribute("state") === "enabled") {
+        if (questions[i].choice1 === questions[i].answer) {
+            rightAnswer()
+            choice1.style.backgroundColor = "#61E786"
+        } else {
+            wrongAnswer()
+            choice1.style.backgroundColor = "red"
+        } disableChoices()
     } else {
-        wrongAnswer()
-        choice1.style.backgroundColor = "red"
+        return;
     }
 }
 
 function checkAnswer2() {
-    if (questions[i].choice2 === questions[i].answer) {
-        rightAnswer()
-        choice2.style.backgroundColor = "#61E786"
+    if (choice2.getAttribute("state") === "enabled") {
+        if (questions[i].choice2 === questions[i].answer) {
+            rightAnswer()
+            choice2.style.backgroundColor = "#61E786"
+        } else {
+            wrongAnswer()
+            choice2.style.backgroundColor = "red"
+        } disableChoices()
     } else {
-        wrongAnswer()
-        choice2.style.backgroundColor = "red"
+        return;
     }
 }
 
 function checkAnswer3() {
-    if (questions[i].choice3 === questions[i].answer) {
-        rightAnswer()
-        choice3.style.backgroundColor = "#61E786"
+    if (choice3.getAttribute("state") === "enabled") {
+        if (questions[i].choice3 === questions[i].answer) {
+            rightAnswer()
+            choice3.style.backgroundColor = "#61E786"
+        } else {
+            wrongAnswer()
+            choice3.style.backgroundColor = "red"
+        } disableChoices()
     } else {
-        wrongAnswer()
-        choice3.style.backgroundColor = "red"
+        return;
     }
 }
 
 function checkAnswer4() {
-    if (questions[i].choice4 === questions[i].answer) {
-        rightAnswer()
-        choice4.style.backgroundColor = "#61E786"
+    if (choice4.getAttribute("state") === "enabled") {
+        if (questions[i].choice4 === questions[i].answer) {
+            rightAnswer()
+            choice4.style.backgroundColor = "#61E786"
+        } else {
+            wrongAnswer()
+            choice4.style.backgroundColor = "red"
+        } disableChoices()
     } else {
-        wrongAnswer()
-        choice4.style.backgroundColor = "red"
+        return;
     }
 }
 
 function nextQuestion() {
     // var i = Math.floor(Math.random() * questions.length);
+    enableChoices()
     choice1.style.backgroundColor = "#9792E3"
     choice2.style.backgroundColor = "#9792E3"
     choice3.style.backgroundColor = "#9792E3"
@@ -264,7 +294,7 @@ function nextQuestion() {
 
 
 
-startButton.addEventListener("click", toggleButton);
+startButton.addEventListener("click", playGame);
 choice1.addEventListener("click", checkAnswer1);
 choice2.addEventListener("click", checkAnswer2);
 choice3.addEventListener("click", checkAnswer3);
