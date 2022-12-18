@@ -7,19 +7,22 @@ var guessForm = document.querySelector(".question-card");
 var displayAnswer = document.createElement('p');
 var nextButton = document.querySelector("#next-button");
 var score = 0;
-var currentScore = document.getElementById("current-score")
+var currentScore = document.getElementById("current-score");
 var question = document.getElementById("question");
 var i = 0;
 var secondsLeft = 60;
 var testKnowledge = document.getElementById('testKnowledge');
 var startButton = document.getElementById('start-button');
 var timerInterval = '';
-startButton.setAttribute("data-state", "stopped")
+var highScore = localStorage.getItem("highScore");
+var highScoreDisplay = document.getElementById("high-score");
+startButton.setAttribute("data-state", "stopped");
 currentScore.innerText = "Current Score: " + score;
-
+localStorage.setItem("highScore", score);
 
 // TODO disable the question display and eventListeners when the time runs out or the reset button is pressed.
 // TODO if the reset button is pressed, the current score goes down to 0.
+highScoreDisplay.innerText = "High Score: " + highScore;
 
 function toggleButton() {
     if (startButton.dataset.state === "running") {
@@ -33,7 +36,7 @@ function toggleButton() {
         secondsLeft = 60;
         testKnowledge.innerText = "Time Left: " + secondsLeft;
     } else {
-        nextQuestion(i)
+        nextQuestion()
         timerInterval = setInterval(function () {
             if (startButton.dataset.state === "stopped") {
                 console.log("checking it's running")
@@ -46,6 +49,11 @@ function toggleButton() {
             if (secondsLeft === 0) {
                 clearInterval(timerInterval);
                 testKnowledge.innerText = "Whoa, dude! Better study more!"
+                localStorage.getItem("highScore")
+                if (score > highScore) {
+                    localStorage.setItem("highScore", score)
+                    highScoreDisplay.innerText = "High Score: " + highScore;
+                }
             }
 
         }, 1000)
