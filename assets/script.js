@@ -7,6 +7,7 @@ var guessForm = document.querySelector(".question-card");
 var displayAnswer = document.createElement('p');
 var nextButton = document.querySelector("#next-button");
 var score = 0;
+var currentScore = document.getElementById("current-score")
 var question = document.getElementById("question");
 var i = 0;
 var secondsLeft = 60;
@@ -14,6 +15,11 @@ var testKnowledge = document.getElementById('testKnowledge');
 var startButton = document.getElementById('start-button');
 var timerInterval = '';
 startButton.setAttribute("data-state", "stopped")
+currentScore.innerText = "Current Score: " + score;
+
+
+// TODO disable the question display and eventListeners when the time runs out or the reset button is pressed.
+// TODO if the reset button is pressed, the current score goes down to 0.
 
 function toggleButton() {
     if (startButton.dataset.state === "running") {
@@ -22,6 +28,10 @@ function toggleButton() {
         startButton.style.backgroundColor = "#61E786";
         startButton.innerText = "Start";
         clearInterval(timerInterval);
+        score = 0;
+        currentScore.innerText = "Current Score: " + score;
+        secondsLeft = 60;
+        testKnowledge.innerText = "Time Left: " + secondsLeft;
     } else {
         nextQuestion(i)
         timerInterval = setInterval(function () {
@@ -43,10 +53,6 @@ function toggleButton() {
 }
 
 
-// TODO the choice chosen will change color depending on if it's right or wrong
-// TODO The answer will show up on the bottom of the screen.
-// TODO A next button will show up on the screen
-// TODO There needs to be a counter on the screen for current wins and high score
 // TODO make another JS file with the answers and questions in them to be referenced
 let questions = [
     {
@@ -148,6 +154,7 @@ function rightAnswer() {
     guessForm.appendChild(displayAnswer);
     nextButton.style.display = "contents";
     score++;
+    currentScore.innerText = "Current Score: " + score;
 }
 
 function wrongAnswer() {
