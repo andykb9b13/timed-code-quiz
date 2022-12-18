@@ -14,15 +14,16 @@ var secondsLeft = 60;
 var testKnowledge = document.getElementById('testKnowledge');
 var startButton = document.getElementById('start-button');
 var timerInterval = '';
+localStorage.setItem("highScore", score);
 var highScore = localStorage.getItem("highScore");
 var highScoreDisplay = document.getElementById("high-score");
 startButton.setAttribute("data-state", "stopped");
 currentScore.innerText = "Current Score: " + score;
-localStorage.setItem("highScore", score);
+nextButton.style.display = "none"
 
 // TODO disable the question display and eventListeners when the time runs out or the reset button is pressed.
 // TODO if the reset button is pressed, the current score goes down to 0.
-highScoreDisplay.innerText = "High Score: " + highScore;
+// TODO need to disable the choices once one has been clicked. data-sate?
 
 function toggleButton() {
     if (startButton.dataset.state === "running") {
@@ -51,7 +52,7 @@ function toggleButton() {
                 testKnowledge.innerText = "Whoa, dude! Better study more!"
                 localStorage.getItem("highScore")
                 if (score > highScore) {
-                    localStorage.setItem("highScore", score)
+                    localStorage.setItem("highScore", score);
                     highScoreDisplay.innerText = "High Score: " + highScore;
                 }
             }
@@ -155,8 +156,6 @@ let questions = [
 
 
 
-nextButton.style.display = "none"
-
 function rightAnswer() {
     displayAnswer.innerText = "CORRECT!";
     guessForm.appendChild(displayAnswer);
@@ -173,39 +172,42 @@ function wrongAnswer() {
 }
 
 function checkAnswer1() {
-    // var i = nextQuestion;
-    choice1.style.backgroundColor = "#61E786"
     if (questions[i].choice1 === questions[i].answer) {
         rightAnswer()
+        choice1.style.backgroundColor = "#61E786"
     } else {
         wrongAnswer()
+        choice1.style.backgroundColor = "red"
     }
 }
 
 function checkAnswer2() {
-    choice2.style.backgroundColor = "#61E786"
     if (questions[i].choice2 === questions[i].answer) {
         rightAnswer()
+        choice2.style.backgroundColor = "#61E786"
     } else {
         wrongAnswer()
+        choice2.style.backgroundColor = "red"
     }
 }
 
 function checkAnswer3() {
-    choice3.style.backgroundColor = "#61E786"
     if (questions[i].choice3 === questions[i].answer) {
         rightAnswer()
+        choice3.style.backgroundColor = "#61E786"
     } else {
         wrongAnswer()
+        choice3.style.backgroundColor = "red"
     }
 }
 
 function checkAnswer4() {
-    choice4.style.backgroundColor = "#61E786"
     if (questions[i].choice4 === questions[i].answer) {
         rightAnswer()
+        choice4.style.backgroundColor = "#61E786"
     } else {
         wrongAnswer()
+        choice4.style.backgroundColor = "red"
     }
 }
 
@@ -235,8 +237,4 @@ choice2.addEventListener("click", checkAnswer2);
 choice3.addEventListener("click", checkAnswer3);
 choice4.addEventListener("click", checkAnswer4);
 nextButton.addEventListener("click", nextQuestion)
-
-
-
-
 
