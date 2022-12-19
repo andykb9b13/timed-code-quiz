@@ -23,6 +23,7 @@ var initials = document.querySelector("#initials");
 var submitButton = document.querySelector(".submit");
 var championsArea = document.querySelector(".champions-area");
 var championsList = document.querySelector(".champions-list");
+var playAgainButton = document.querySelector(".play-again")
 startButton.setAttribute("data-state", "stopped");
 currentScore.innerText = "Current Score: " + score;
 nextButton.style.display = "none"
@@ -35,6 +36,8 @@ highScoreDisplay.innerText = "High Score: " + highScore;
 
 
 function playGame() {
+    championsArea.style.display = "none";
+    gameArea.style.display = "contents"
     highScore = localStorage.getItem("highScore");
     highScoreDisplay.innerText = "High Score: " + highScore;
     if (startButton.dataset.state === "running") {
@@ -366,7 +369,7 @@ choice3.addEventListener("click", checkAnswer3);
 choice4.addEventListener("click", checkAnswer4);
 nextButton.addEventListener("click", nextQuestion);
 submitButton.addEventListener("click", setHighScore)
-
+playAgainButton.addEventListener("click", playGame);
 
 function setHighScore() {
     var myInitials = initials.value;
