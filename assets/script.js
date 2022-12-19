@@ -21,8 +21,11 @@ currentScore.innerText = "Current Score: " + score;
 nextButton.style.display = "none"
 
 // TODO disable the eventListeners when the time runs out or the reset button is pressed.
+highScoreDisplay.innerText = "High Score: " + highScore;
 
 function playGame() {
+    highScore = localStorage.getItem("highScore");
+    highScoreDisplay.innerText = "High Score: " + highScore;
     if (startButton.dataset.state === "running") {
         console.log("checking it's stopping")
         startButton.setAttribute("data-state", "stopped");
@@ -52,7 +55,7 @@ function playGame() {
                 localStorage.getItem("highScore")
                 if (score > highScore) {
                     localStorage.setItem("highScore", score);
-                    highScoreDisplay.innerText = "High Score: " + highScore;
+
                 }
             }
 
