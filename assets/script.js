@@ -24,7 +24,6 @@ nextButton.style.display = "none"
 
 function playGame() {
     if (startButton.dataset.state === "running") {
-        enableChoices()
         console.log("checking it's stopping")
         startButton.setAttribute("data-state", "stopped");
         startButton.style.backgroundColor = "#61E786";
@@ -34,6 +33,7 @@ function playGame() {
         currentScore.innerText = "Current Score: " + score;
         secondsLeft = 60;
         testKnowledge.innerText = "Time Left: " + secondsLeft;
+        nextButton.style.display = "none";
     } else {
         nextQuestion()
         timerInterval = setInterval(function () {
@@ -292,6 +292,8 @@ function nextQuestion() {
     choice4.innerText = questions[i].choice4;
     console.log(questions[i]);
     return i;
+
+
 }
 
 
