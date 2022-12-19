@@ -134,18 +134,21 @@ h2 {
     justify-content: center;
 }
 
-.initials-input {
+.initials-input,
+.champions {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 5%;
 }
 
-.initials-input * {
+.initials-input *,
+.champions * {
     margin: 10px;
 }
 
-.initials-input button {
+.initials-input button,
+.champions button {
     font-size: 1em;
 }
 
@@ -164,7 +167,7 @@ h2 {
         font-size: 4em;
     }
 
-    #testKnowledge {
+    h2 {
         font-size: 2em;
     }
 

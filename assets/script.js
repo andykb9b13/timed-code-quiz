@@ -21,10 +21,13 @@ var endGameArea = document.querySelector(".end-game-area");
 var finalScore = document.querySelector(".final-score");
 var initials = document.querySelector("#initials");
 var submitButton = document.querySelector(".submit");
+var championsArea = document.querySelector(".champions-area");
+var championsList = document.querySelector(".champions-list");
 startButton.setAttribute("data-state", "stopped");
 currentScore.innerText = "Current Score: " + score;
 nextButton.style.display = "none"
-// endGameArea.style.display = "none"
+endGameArea.style.display = "none";
+championsArea.style.display = "none";
 
 // TODO need to create a high score page to enter initials.
 
@@ -364,11 +367,14 @@ choice4.addEventListener("click", checkAnswer4);
 nextButton.addEventListener("click", nextQuestion);
 submitButton.addEventListener("click", setHighScore)
 
+
 function setHighScore() {
     var myInitials = initials.value;
-    if (myInitials === null) {
-        return setHighScore()
-    } else {
-        console.log(myInitials);
-    }
+    console.log(myInitials);
+    localStorage.setItem("playerInits", myInitials);
+    endGameArea.style.display = "none";
+    championsArea.style.display = "contents";
+    newChampion = document.createElement('li');
+    newChampion.innerText = myInitials + score;
+    championsList.appendChild(newChampion);
 }
