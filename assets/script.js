@@ -16,6 +16,7 @@ var startButton = document.getElementById('start-button');
 var timerInterval = '';
 var highScore = localStorage.getItem("highScore");
 var highScoreDisplay = document.getElementById("high-score");
+var gameArea = document.querySelector(".card-outer-box");
 startButton.setAttribute("data-state", "stopped");
 currentScore.innerText = "Current Score: " + score;
 nextButton.style.display = "none"
@@ -24,7 +25,11 @@ nextButton.style.display = "none"
 
 highScoreDisplay.innerText = "High Score: " + highScore;
 
+
 function playGame() {
+    // highScoreArea.style.display = "none";
+    // gameArea.style.display = "contents";
+
     highScore = localStorage.getItem("highScore");
     highScoreDisplay.innerText = "High Score: " + highScore;
     if (startButton.dataset.state === "running") {
@@ -36,6 +41,7 @@ function playGame() {
         score = 0;
         currentScore.innerText = "Current Score: " + score;
         secondsLeft = 60;
+        i = -1;
         testKnowledge.innerText = "Time Left: " + secondsLeft;
         nextButton.style.display = "none";
     } else {
@@ -52,6 +58,7 @@ function playGame() {
             if (secondsLeft <= 0) {
                 disableChoices()
                 clearInterval(timerInterval);
+
                 testKnowledge.innerText = "Whoa, dude! Better study more!"
                 localStorage.getItem("highScore")
                 if (score > highScore) {
@@ -99,14 +106,6 @@ let questions = [
         choice3: "O(LogN)",
         choice4: "O(2N)",
         answer: "O(1)"
-    },
-    {
-        question: "Which is the adjacent selector?",
-        choice1: "+",
-        choice2: "<",
-        choice3: ">",
-        choice4: "=",
-        answer: "+"
     },
     {
         question: "Which is the correct way to identify 'orange' in the following array: var fruits = ['apple', 'orange', 'pear];",
@@ -333,7 +332,7 @@ function checkAnswer4() {
 }
 
 function nextQuestion() {
-    // var i = Math.floor(Math.random() * questions.length);
+    // i = Math.floor(Math.random() * questions.length);
     // TODO create a random selector that checks if the index # selected is in an array of pushed index #s
     enableChoices()
     choice1.style.backgroundColor = "#9792E3"
@@ -350,9 +349,15 @@ function nextQuestion() {
     choice4.innerText = questions[i].choice4;
     console.log(questions[i]);
     return i;
-
-
 }
+
+// function highScoreArea() {
+//     testKnowledge.innerText = "High Scores";
+//     var highScoreIntro = document.createElement('p');
+//     highScoreIntro.innerText = "Your score was: " + score;
+//     testKnowledge.appendChild(highScoreIntro);
+//     gameArea.style.display = "none";
+// }
 
 startButton.addEventListener("click", playGame);
 choice1.addEventListener("click", checkAnswer1);
