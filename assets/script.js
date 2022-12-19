@@ -191,7 +191,7 @@ function rightAnswer() {
     displayAnswer.innerText = "CORRECT!";
     guessForm.appendChild(displayAnswer);
     nextButton.style.display = "contents";
-    score++;
+    score += 45;
     currentScore.innerText = "Current Score: " + score;
 }
 
