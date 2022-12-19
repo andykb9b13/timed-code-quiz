@@ -77,28 +77,28 @@ let questions = [
         answer: "Script"
     },
     {
-        question: "Which of the following is the right syntax for CSS?",
-        choice1: "color: 'blue';",
-        choice2: "'background': white;",
-        choice3: "font-family = serif;",
-        choice4: "'line-height': '10px';",
-        answer: "color: 'blue';"
+        question: "Which of the following is NOT one of the 3 basic types of Javascript Objects?",
+        choice1: "Host Objects",
+        choice2: "Core-Language Objects",
+        choice3: "Independent Objects",
+        choice4: "User-Defined Objects",
+        answer: "Independent Objects"
     },
     {
-        question: "Which of the following moves elements along the main axis in CSS?",
-        choice1: "justify-items",
-        choice2: "align-content",
-        choice3: "center-content",
-        choice4: "justify-content",
-        answer: "justify-content"
+        question: "What does DOM stand for?",
+        choice1: "Document Obliterating Model",
+        choice2: "Detail Oriented Mark",
+        choice3: "Document Object Mode",
+        choice4: "Document Object Model",
+        answer: "Document Object Model"
     },
     {
-        question: "Which is NOT a relative unit of measurement?",
-        choice1: "4em",
-        choice2: "2.5rem",
-        choice3: "75px",
-        choice4: "40%",
-        answer: "75px"
+        question: "Which is the most efficient algorithm using 'Big O' notation?",
+        choice1: "O(N)",
+        choice2: "O(1)",
+        choice3: "O(LogN)",
+        choice4: "O(2N)",
+        answer: "O(1)"
     },
     {
         question: "Which is the adjacent selector?",
@@ -109,28 +109,28 @@ let questions = [
         answer: "+"
     },
     {
-        question: "Which of the following moves elements along the main axis in CSS?",
-        choice1: "justify-items",
-        choice2: "align-content",
-        choice3: "center-content",
-        choice4: "justify-content",
-        answer: "justify-content"
+        question: "Which is the correct way to identify 'orange' in the following array: var fruits = ['apple', 'orange', 'pear];",
+        choice1: "fruits[1]",
+        choice2: "fruits[0]",
+        choice3: "fruits[2]",
+        choice4: "fruits[orange]",
+        answer: "fruits[1]"
     },
     {
-        question: "Which of the following has the highest specificity?",
-        choice1: "#chrome",
-        choice2: ".chrome",
-        choice3: "chrome",
-        choice4: ".chrome p",
-        answer: "#chrome"
+        question: "Which of the following is the right syntax for calling an element with the class name 'first",
+        choice1: "document.querySelector(.first)",
+        choice2: "document.querySelector('.first')",
+        choice3: "document.getClassName(.first)",
+        choice4: "document.getClassName('.first')",
+        answer: "document.querySelector('.first')"
     },
     {
-        question: "Which property adjusts the space between elements?",
-        choice1: "border",
-        choice2: "margin",
-        choice3: "padding",
-        choice4: "transparency",
-        answer: "margin"
+        question: "Which best describes JavaScript?",
+        choice1: "double-threaded",
+        choice2: "triple-threaded",
+        choice3: "non-threaded",
+        choice4: "single-threaded",
+        answer: "single-threaded"
     },
     {
         question: "Which variable's value cannot be changed once declared?",
@@ -187,8 +187,63 @@ let questions = [
         choice3: "true !== false",
         choice4: "5 == 'five'",
         answer: "2 != '2'"
+    },
+    {
+        question: "Which of the following is NOT correct syntax for writing a function?",
+        choice1: "function newFunc() { console.log('hello!) }",
+        choice2: "var newFunc = function() { console.log('hello!) }",
+        choice3: "var function() = newFunc { console.log('hello') }",
+        choice4: "var newFunc = () => { console.log('hello') }",
+        answer: "var function() = newFunc { console.log('hello') }"
+    },
+    {
+        question: "For the variable 'let x=5', which of the following will satisfy the conditions?",
+        choice1: "if (x > 1 && x < 4)",
+        choice2: "if (x > 1 || x < 4)",
+        choice3: "if (x < 1 || x < 4)",
+        choice4: "if (x > 5 && x < 10)",
+        answer: "if (x > 1 || x < 4)"
+    },
+    {
+        question: "Which of the following means 'Not A Number'?",
+        choice1: "undefined",
+        choice2: "NaN",
+        choice3: "null",
+        choice4: "false",
+        answer: "NaN"
+    },
+    {
+        question: "Which of the following will return NaN when called?",
+        choice1: "var num = 5 + '5'",
+        choice2: "var num = 'fifty' + '5'",
+        choice3: "var num = null + 5",
+        choice4: "var num = 5 + undefined",
+        answer: "var num = 5 + undefined"
+    },
+    {
+        question: "Which of the following means 'strict equality'?",
+        choice1: "===",
+        choice2: "==",
+        choice3: "!==",
+        choice4: "=",
+        answer: "==="
+    },
+    {
+        question: "What will be returned when the following is logged in the console: [22, 24] === [22, 24]?",
+        choice1: "false",
+        choice2: "true",
+        choice3: "undefined",
+        choice4: "NaN",
+        answer: "false"
+    },
+    {
+        question: "Which of the following array method will add a value to the BEGINING of an array?",
+        choice1: ".shift()",
+        choice2: ".unshift()",
+        choice3: ".pop()",
+        choice4: ".push()",
+        answer: ".unshift()"
     }
-
 ];
 
 function rightAnswer() {
@@ -221,7 +276,6 @@ function enableChoices() {
 }
 
 enableChoices()
-// Trying to write an "enable/disable" condition to keep buttons event listeners from firing once one answer is selected.
 function checkAnswer1() {
     if (choice1.getAttribute("state") === "enabled") {
         if (questions[i].choice1 === questions[i].answer) {
@@ -299,8 +353,6 @@ function nextQuestion() {
 
 
 }
-
-
 
 startButton.addEventListener("click", playGame);
 choice1.addEventListener("click", checkAnswer1);
