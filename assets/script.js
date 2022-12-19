@@ -20,7 +20,8 @@ startButton.setAttribute("data-state", "stopped");
 currentScore.innerText = "Current Score: " + score;
 nextButton.style.display = "none"
 
-// TODO disable the eventListeners when the time runs out or the reset button is pressed.
+// TODO need to create a high score page to enter initials.
+
 highScoreDisplay.innerText = "High Score: " + highScore;
 
 function playGame() {
