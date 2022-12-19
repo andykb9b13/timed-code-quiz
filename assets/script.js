@@ -16,10 +16,12 @@ var startButton = document.getElementById('start-button');
 var timerInterval = '';
 var highScore = localStorage.getItem("highScore");
 var highScoreDisplay = document.getElementById("high-score");
-var gameArea = document.querySelector(".card-outer-box");
+var gameArea = document.querySelector(".game-area");
+var endGameArea = document.querySelector(".end-game-area");
 startButton.setAttribute("data-state", "stopped");
 currentScore.innerText = "Current Score: " + score;
 nextButton.style.display = "none"
+endGameArea.style.display = "none"
 
 // TODO need to create a high score page to enter initials.
 
@@ -27,9 +29,6 @@ highScoreDisplay.innerText = "High Score: " + highScore;
 
 
 function playGame() {
-    // highScoreArea.style.display = "none";
-    // gameArea.style.display = "contents";
-
     highScore = localStorage.getItem("highScore");
     highScoreDisplay.innerText = "High Score: " + highScore;
     if (startButton.dataset.state === "running") {
@@ -48,17 +47,18 @@ function playGame() {
         nextQuestion()
         timerInterval = setInterval(function () {
             if (startButton.dataset.state === "stopped") {
-                console.log("checking it's running")
+                console.log("checking it's running");
                 startButton.setAttribute("data-state", "running");
                 startButton.style.backgroundColor = "red";
-                startButton.innerText = "Reset"
+                startButton.innerText = "Reset";
             }
             secondsLeft--;
             testKnowledge.innerText = "Time Left: " + secondsLeft;
             if (secondsLeft <= 0) {
-                disableChoices()
+                gameArea.style.display = "none";
+                endGameArea.style.display = "contents";
+                disableChoices();
                 clearInterval(timerInterval);
-
                 testKnowledge.innerText = "Whoa, dude! Better study more!"
                 localStorage.getItem("highScore")
                 if (score > highScore) {
@@ -71,9 +71,6 @@ function playGame() {
     }
 }
 
-
-// TODO make another JS file with the answers and questions in them to be referenced
-// TODO need to change the questions to be ONLY about JavaScript concepts
 let questions = [
     {
         question: "Which of the following is not a primitive type in JavaScript?",
