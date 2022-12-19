@@ -18,10 +18,13 @@ var highScore = localStorage.getItem("highScore");
 var highScoreDisplay = document.getElementById("high-score");
 var gameArea = document.querySelector(".game-area");
 var endGameArea = document.querySelector(".end-game-area");
+var finalScore = document.querySelector(".final-score");
+var initials = document.querySelector("#initials");
+var submitButton = document.querySelector(".submit");
 startButton.setAttribute("data-state", "stopped");
 currentScore.innerText = "Current Score: " + score;
 nextButton.style.display = "none"
-endGameArea.style.display = "none"
+// endGameArea.style.display = "none"
 
 // TODO need to create a high score page to enter initials.
 
@@ -55,11 +58,10 @@ function playGame() {
             secondsLeft--;
             testKnowledge.innerText = "Time Left: " + secondsLeft;
             if (secondsLeft <= 0) {
-                gameArea.style.display = "none";
-                endGameArea.style.display = "contents";
-                disableChoices();
+                finalScoreDisplay();
+                // disableChoices();
                 clearInterval(timerInterval);
-                testKnowledge.innerText = "Whoa, dude! Better study more!"
+                // testKnowledge.innerText = "Whoa, dude! Better study more!"
                 localStorage.getItem("highScore")
                 if (score > highScore) {
                     localStorage.setItem("highScore", score);
@@ -348,18 +350,25 @@ function nextQuestion() {
     return i;
 }
 
-// function highScoreArea() {
-//     testKnowledge.innerText = "High Scores";
-//     var highScoreIntro = document.createElement('p');
-//     highScoreIntro.innerText = "Your score was: " + score;
-//     testKnowledge.appendChild(highScoreIntro);
-//     gameArea.style.display = "none";
-// }
+function finalScoreDisplay() {
+    gameArea.style.display = "none";
+    endGameArea.style.display = "contents";
+    finalScore.innerText = "Your final score was: " + score;
+}
 
 startButton.addEventListener("click", playGame);
 choice1.addEventListener("click", checkAnswer1);
 choice2.addEventListener("click", checkAnswer2);
 choice3.addEventListener("click", checkAnswer3);
 choice4.addEventListener("click", checkAnswer4);
-nextButton.addEventListener("click", nextQuestion)
+nextButton.addEventListener("click", nextQuestion);
+submitButton.addEventListener("click", setHighScore)
 
+function setHighScore() {
+    var myInitials = initials.value;
+    if (myInitials === null) {
+        return setHighScore()
+    } else {
+        console.log(myInitials);
+    }
+}
