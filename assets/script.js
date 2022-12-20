@@ -350,23 +350,32 @@ playAgainButton.addEventListener("click", playGame)
 var myHighScore = [];
 
 function setHighScore() {
-
     myHighScore = JSON.parse(localStorage.getItem("playerScore"));
+
     var myInitials = initials.value;
     var nameScore = {
         name: myInitials,
         score: score
     }
-    myHighScore.push(nameScore);
-    console.log(myHighScore);
+    if (myHighScore === null) {
+        myHighScore = [];
+        myHighScore.push(nameScore);
+        localStorage.setItem("playerScore", JSON.stringify(myHighScore))
+    } else {
 
-    localStorage.setItem("playerScore", JSON.stringify(myHighScore));
+        myHighScore.push(nameScore);
+        console.log(myHighScore);
+        localStorage.setItem("playerScore", JSON.stringify(myHighScore));
 
-    for (let i = 0; i < myHighScore.length; i++) {
-        newChampion = document.createElement('li');
-        newChampion.innerText = "Player: " + myHighScore[i].name + " " + "Score: " + myHighScore[i].score;
-        championsList.appendChild(newChampion);
+
+        for (let i = 0; i < myHighScore.length; i++) {
+            newChampion = document.createElement('li');
+            newChampion.innerText = "Player: " + myHighScore[i].name + " " + "Score: " + myHighScore[i].score;
+            championsList.appendChild(newChampion);
+        }
     }
+
+
     endGameArea.style.display = "none";
     championsArea.style.display = "contents";
 
