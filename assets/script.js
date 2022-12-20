@@ -352,14 +352,12 @@ var myHighScore = [];
 
 function setHighScore() {
     myHighScore = JSON.parse(localStorage.getItem("playerScore"));
-
     var myInitials = initials.value;
     var nameScore = {
         name: myInitials,
         score: score
     }
-    if (myHighScore === null) {
-        myHighScore = [];
+    function createChampionsList() {
         myHighScore.push(nameScore);
         localStorage.setItem("playerScore", JSON.stringify(myHighScore))
         for (let i = 0; i < myHighScore.length; i++) {
@@ -367,22 +365,13 @@ function setHighScore() {
             newChampion.innerText = "Player: " + myHighScore[i].name + " " + "Score: " + myHighScore[i].score;
             championsList.appendChild(newChampion);
         }
-    } else {
-
-        myHighScore.push(nameScore);
-        console.log(myHighScore);
-        localStorage.setItem("playerScore", JSON.stringify(myHighScore));
-
-
-        for (let i = 0; i < myHighScore.length; i++) {
-            newChampion = document.createElement('li');
-            newChampion.innerText = "Player: " + myHighScore[i].name + " " + "Score: " + myHighScore[i].score;
-            championsList.appendChild(newChampion);
-        }
     }
-
-
+    if (myHighScore === null) {
+        myHighScore = [];
+        createChampionsList()
+    } else {
+        createChampionsList()
+    }
     endGameArea.style.display = "none";
     championsArea.style.display = "contents";
-
 }
