@@ -4,6 +4,7 @@ var choice2 = document.querySelector("#choice2");
 var choice3 = document.querySelector("#choice3");
 var choice4 = document.querySelector("#choice4");
 var guessForm = document.querySelector(".question-card");
+var startHiddenBox = document.querySelector(".start-hidden");
 var displayAnswer = document.querySelector('.answer');
 var score = 0;
 var currentScore = document.getElementById("current-score");
@@ -26,13 +27,15 @@ startButton.setAttribute("data-state", "stopped");
 currentScore.innerText = "Current Score: " + score;
 endGameArea.style.display = "none";
 championsArea.style.display = "none";
-
+startHiddenBox.style.display = "none";
 // TODO need to create a high score page to enter initials.
+// TODO need to use an object to set the local storage for the high scores
 
 highScoreDisplay.innerText = "High Score: " + highScore;
 
 
 function playGame() {
+    startHiddenBox.style.display = "contents";
     highScore = localStorage.getItem("highScore");
     highScoreDisplay.innerText = "High Score: " + highScore;
     if (startButton.dataset.state === "running") {
@@ -49,6 +52,7 @@ function playGame() {
 
     } else {
         nextQuestion()
+        displayAnswer.innerText = "";
         timerInterval = setInterval(function () {
             if (startButton.dataset.state === "stopped") {
                 console.log("checking it's running");
