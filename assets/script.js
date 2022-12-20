@@ -5,7 +5,7 @@ var choice3 = document.querySelector("#choice3");
 var choice4 = document.querySelector("#choice4");
 var guessForm = document.querySelector(".question-card");
 var displayAnswer = document.createElement('p');
-var nextButton = document.querySelector("#next-button");
+
 var score = 0;
 var currentScore = document.getElementById("current-score");
 var question = document.getElementById("question");
@@ -25,7 +25,7 @@ var championsArea = document.querySelector(".champions-area");
 var championsList = document.querySelector(".champions-list");
 startButton.setAttribute("data-state", "stopped");
 currentScore.innerText = "Current Score: " + score;
-nextButton.style.display = "none"
+
 endGameArea.style.display = "none";
 championsArea.style.display = "none";
 
@@ -48,7 +48,7 @@ function playGame() {
         secondsLeft = 60;
         i = -1;
         testKnowledge.innerText = "Time Left: " + secondsLeft;
-        nextButton.style.display = "none";
+
     } else {
         nextQuestion()
         timerInterval = setInterval(function () {
@@ -250,98 +250,86 @@ let questions = [
 function rightAnswer() {
     displayAnswer.innerText = "CORRECT!";
     guessForm.appendChild(displayAnswer);
-    nextButton.style.display = "contents";
     score += 45;
     currentScore.innerText = "Current Score: " + score;
+    nextQuestion();
 }
 
 function wrongAnswer() {
     displayAnswer.innerText = "WRONG! The correct answer is: " + questions[i].answer;
     guessForm.appendChild(displayAnswer);
-    nextButton.style.display = "contents"
     secondsLeft -= 5
+    nextQuestion();
 }
 
-function disableChoices() {
-    choice1.setAttribute("state", "disabled")
-    choice2.setAttribute("state", "disabled")
-    choice3.setAttribute("state", "disabled")
-    choice4.setAttribute("state", "disabled")
-}
+// function disableChoices() {
+//     choice1.setAttribute("state", "disabled")
+//     choice2.setAttribute("state", "disabled")
+//     choice3.setAttribute("state", "disabled")
+//     choice4.setAttribute("state", "disabled")
+// }
 
-function enableChoices() {
-    choice1.setAttribute("state", "enabled")
-    choice2.setAttribute("state", "enabled")
-    choice3.setAttribute("state", "enabled")
-    choice4.setAttribute("state", "enabled")
-}
+// function enableChoices() {
+//     choice1.setAttribute("state", "enabled")
+//     choice2.setAttribute("state", "enabled")
+//     choice3.setAttribute("state", "enabled")
+//     choice4.setAttribute("state", "enabled")
+// }
 
-enableChoices()
+
 function checkAnswer1() {
-    if (choice1.getAttribute("state") === "enabled") {
-        if (questions[i].choice1 === questions[i].answer) {
-            rightAnswer()
-            choice1.style.backgroundColor = "#61E786"
-        } else {
-            wrongAnswer()
-            choice1.style.backgroundColor = "red"
-        } disableChoices()
+
+    if (questions[i].choice1 === questions[i].answer) {
+        rightAnswer()
+        choice1.style.backgroundColor = "#61E786"
     } else {
-        return;
-    }
+        wrongAnswer()
+        choice1.style.backgroundColor = "red"
+    } disableChoices()
 }
 
 function checkAnswer2() {
-    if (choice2.getAttribute("state") === "enabled") {
-        if (questions[i].choice2 === questions[i].answer) {
-            rightAnswer()
-            choice2.style.backgroundColor = "#61E786"
-        } else {
-            wrongAnswer()
-            choice2.style.backgroundColor = "red"
-        } disableChoices()
+
+    if (questions[i].choice2 === questions[i].answer) {
+        rightAnswer()
+        choice2.style.backgroundColor = "#61E786"
     } else {
-        return;
-    }
+        wrongAnswer()
+        choice2.style.backgroundColor = "red"
+    } disableChoices()
 }
 
 function checkAnswer3() {
-    if (choice3.getAttribute("state") === "enabled") {
-        if (questions[i].choice3 === questions[i].answer) {
-            rightAnswer()
-            choice3.style.backgroundColor = "#61E786"
-        } else {
-            wrongAnswer()
-            choice3.style.backgroundColor = "red"
-        } disableChoices()
+
+    if (questions[i].choice3 === questions[i].answer) {
+        rightAnswer()
+        choice3.style.backgroundColor = "#61E786"
     } else {
-        return;
-    }
+        wrongAnswer()
+        choice3.style.backgroundColor = "red"
+    } disableChoices()
 }
 
 function checkAnswer4() {
-    if (choice4.getAttribute("state") === "enabled") {
-        if (questions[i].choice4 === questions[i].answer) {
-            rightAnswer()
-            choice4.style.backgroundColor = "#61E786"
-        } else {
-            wrongAnswer()
-            choice4.style.backgroundColor = "red"
-        } disableChoices()
+
+    if (questions[i].choice4 === questions[i].answer) {
+        rightAnswer()
+        choice4.style.backgroundColor = "#61E786"
     } else {
-        return;
-    }
+        wrongAnswer()
+        choice4.style.backgroundColor = "red"
+    } disableChoices()
 }
 
 function nextQuestion() {
     // i = Math.floor(Math.random() * questions.length);
     // TODO create a random selector that checks if the index # selected is in an array of pushed index #s
-    enableChoices()
+
     choice1.style.backgroundColor = "#9792E3"
     choice2.style.backgroundColor = "#9792E3"
     choice3.style.backgroundColor = "#9792E3"
     choice4.style.backgroundColor = "#9792E3"
-    nextButton.style.display = "none"
+
     displayAnswer.innerText = "";
     i++;
     question.innerText = questions[i].question;
@@ -364,7 +352,6 @@ choice1.addEventListener("click", checkAnswer1);
 choice2.addEventListener("click", checkAnswer2);
 choice3.addEventListener("click", checkAnswer3);
 choice4.addEventListener("click", checkAnswer4);
-nextButton.addEventListener("click", nextQuestion);
 submitButton.addEventListener("click", setHighScore)
 
 
