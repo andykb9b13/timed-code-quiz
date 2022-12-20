@@ -23,6 +23,7 @@ var initials = document.querySelector("#initials");
 var submitButton = document.querySelector(".submit");
 var championsArea = document.querySelector(".champions-area");
 var championsList = document.querySelector(".champions-list");
+var playAgainButton = document.querySelector(".play-again");
 startButton.setAttribute("data-state", "stopped");
 currentScore.innerText = "Current Score: " + score;
 endGameArea.style.display = "none";
@@ -34,7 +35,9 @@ highScoreDisplay.innerText = "High Score: " + highScore;
 // TODO need to use an object to set the local storage for the high scores
 
 function playGame() {
+    championsArea.style.display = "none";
     startHiddenBox.style.display = "contents";
+    gameArea.style.display = "contents";
     highScore = localStorage.getItem("highScore");
     highScoreDisplay.innerText = "High Score: " + highScore;
     if (startButton.dataset.state === "running") {
@@ -320,19 +323,30 @@ choice2.addEventListener("click", checkAnswer2);
 choice3.addEventListener("click", checkAnswer3);
 choice4.addEventListener("click", checkAnswer4);
 submitButton.addEventListener("click", setHighScore)
+playAgainButton.addEventListener("click", playGame)
 
+
+var myHighScore = [];
 
 function setHighScore() {
+
+    myHighScore = JSON.parse(localStorage.getItem("playerScore"));
     var myInitials = initials.value;
-    var myHighScore = {
+    var nameScore = {
         name: myInitials,
         score: score
     }
+    myHighScore.push(nameScore);
     console.log(myHighScore);
-    localStorage.setItem("playerScore", myHighScore);
+
+    localStorage.setItem("playerScore", JSON.stringify(myHighScore));
+
+    for (let i = 0; i < myHighScore.length; i++) {
+        newChampion = document.createElement('li');
+        newChampion.innerText = "Player: " + myHighScore[i].name + " " + "Score: " + myHighScore[i].score;
+        championsList.appendChild(newChampion);
+    }
     endGameArea.style.display = "none";
     championsArea.style.display = "contents";
-    newChampion = document.createElement('li');
-    newChampion.innerText = "Player: " + myInitials + " " + "Score: " + score;
-    championsList.appendChild(newChampion);
+
 }
