@@ -1,31 +1,52 @@
+/*****************************************************************************************
+ * Timed-code-quiz
+ * created by: Andy Kleindienst 12/15/22
+ * 
+ * This is a game where a user is prompted to answer questions about JavaScript
+ * The user clicks on choices given to them and the score is incremented for right answers
+ * There is a timer and the player loses time for every wrong answer
+ * High scores are recorded, saved, and displayed 
+ *****************************************************************************************/
 
+// *********** The question, choice, and answer elements that will display ********
+var question = document.getElementById("question");
 var choice1 = document.querySelector("#choice1");
 var choice2 = document.querySelector("#choice2");
 var choice3 = document.querySelector("#choice3");
 var choice4 = document.querySelector("#choice4");
+var displayAnswer = document.querySelector('.answer');
+
+// *********** Initials input at the end *****************
+var initials = document.querySelector("#initials");
+
+// *********** The timer element *********************
+var testKnowledge = document.getElementById('testKnowledge');
+
+// *********** Scores **********************
+var highScore = localStorage.getItem("highScore");
+var finalScore = document.querySelector(".final-score");
+var currentScore = document.getElementById("current-score");
+
+// *********** Sections and areas in html to be hidden and displayed ***************
 var guessForm = document.querySelector(".question-card");
 var startHiddenBox = document.querySelector(".start-hidden");
-var displayAnswer = document.querySelector('.answer');
-var score = 0;
-var currentScore = document.getElementById("current-score");
-var question = document.getElementById("question");
-var i = -1;
-var secondsLeft = 60;
-var testKnowledge = document.getElementById('testKnowledge');
-var startButton = document.getElementById('start-button');
-var timerInterval = '';
-var highScore = localStorage.getItem("highScore");
-var highScoreDisplay = document.getElementById("high-score");
 var gameArea = document.querySelector(".game-area");
 var endGameArea = document.querySelector(".end-game-area");
-var finalScore = document.querySelector(".final-score");
-var initials = document.querySelector("#initials");
-var submitButton = document.querySelector(".submit");
 var championsArea = document.querySelector(".champions-area");
 var championsList = document.querySelector(".champions-list");
-var playAgainButton = document.querySelector(".play-again");
-var myHighScore = [];
+var highScoreDisplay = document.getElementById("high-score");
 
+// *********** Buttons ****************
+var startButton = document.getElementById('start-button');
+var submitButton = document.querySelector(".submit");
+var playAgainButton = document.querySelector(".play-again");
+
+// ************ Initial settings **************
+var timerInterval = '';
+var score = 0;
+var myHighScore = [];
+var i = -1;
+var secondsLeft = 60;
 startButton.setAttribute("data-state", "stopped");
 currentScore.innerText = "Current Score: " + score;
 endGameArea.style.display = "none";
@@ -33,6 +54,7 @@ championsArea.style.display = "none";
 startHiddenBox.style.display = "none";
 highScoreDisplay.innerText = "High Score: " + highScore;
 
+// *********** The Questions ************************
 let questions = [
     {
         question: "Which of the following is not a primitive type in JavaScript?",
@@ -196,6 +218,15 @@ let questions = [
     }
 ];
 
+// ***************** The Functions *******************************
+/* PlayGame() fires after the start button is pressed. 
+It resets the initial settings for variables and area displays. 
+It toggles between "start" and "reset" by setting the data-state to "running" or "stopped". 
+If the button is pressed while the state is "running", it will clear the timer and score and  timerInterval and no score will be saved. 
+If it is pressed while the state is "stopped", it will initialize a timer, display the questions. 
+If the timer runs out it will run finalScoreDisplay() and move you to a new screen. 
+The score of the current game will be checked against the high score and saved in the highScore variable if it is larger */
+
 function playGame() {
     championsList.innerHTML = "";
     championsArea.style.display = "none";
@@ -204,7 +235,7 @@ function playGame() {
     highScore = localStorage.getItem("highScore");
     highScoreDisplay.innerText = "High Score: " + highScore;
     if (startButton.dataset.state === "running") {
-        console.log("checking it's stopping")
+        console.log("stopped the game")
         startButton.setAttribute("data-state", "stopped");
         startButton.style.backgroundColor = "#61E786";
         startButton.innerText = "Start";
@@ -221,7 +252,7 @@ function playGame() {
         displayAnswer.innerText = "";
         timerInterval = setInterval(function () {
             if (startButton.dataset.state === "stopped") {
-                console.log("checking it's running");
+                console.log("starting the game");
                 startButton.setAttribute("data-state", "running");
                 startButton.style.backgroundColor = "red";
                 startButton.innerText = "Reset";
@@ -241,7 +272,10 @@ function playGame() {
     }
 }
 
-
+/* rightAnswer() and wrongAnswer() fire when one of the conditions is fulfilled in the checkAnswer() functions.
+They will either increment the score by 45 or decrement the time left by 5 seconds.
+Then they will fire nextQuestion(), which will take you to the next quesion
+*/
 
 function rightAnswer() {
     displayAnswer.innerText = "CORRECT!";
@@ -255,6 +289,18 @@ function wrongAnswer() {
     secondsLeft -= 5
     nextQuestion();
 }
+
+/* The checkQuestions() function checks to see if the current value of i is equal to the length of the array of questions
+If it returns true, it fires finalScoreDisplay(), which will take you to a new screen */
+function checkQuestions() {
+    if (i === questions.length) {
+        finalScoreDisplay();
+    }
+}
+/* The checkAnswer() function checks the value of the choice selected against the value of the answer
+It fires checkQuestions() before checking the values.
+If it returns true, it fires rightAnswer() and if it is false it fires wrongAnswer()
+*/
 
 function checkAnswer1() {
     checkQuestions()
@@ -295,17 +341,11 @@ function checkAnswer4() {
     }
 }
 
-function checkQuestions() {
-    if (i === questions.length) {
-        finalScoreDisplay();
-    }
-}
-
+/* nextQuestion() increments the global value of i by one.
+It checks to see if it will be greater than the number of questions that exist in the questions array. 
+It dislays the values of question[i] for the user on the screen.
+*/
 function nextQuestion() {
-    choice1.style.backgroundColor = "#9792E3"
-    choice2.style.backgroundColor = "#9792E3"
-    choice3.style.backgroundColor = "#9792E3"
-    choice4.style.backgroundColor = "#9792E3"
     i++;
     if (i === questions.length) {
         checkQuestions()
@@ -315,11 +355,12 @@ function nextQuestion() {
         choice2.innerText = questions[i].choice2;
         choice3.innerText = questions[i].choice3;
         choice4.innerText = questions[i].choice4;
-        console.log(questions[i]);
         return i;
     }
 }
 
+/* finalScoreDisplay() moves the user to a new display.
+The questions are no longer visible and gameplay is over. */
 function finalScoreDisplay() {
     gameArea.style.display = "none";
     endGameArea.style.display = "contents";
@@ -327,6 +368,9 @@ function finalScoreDisplay() {
     localStorage.setItem("highScore", score);
 }
 
+/* setHighScore() sets the current score of the game to localStorage.
+It captures the users name input and score and stores it as JSON.
+createChampionsList() creates the HTML elements on the page and sets the values from localStorage to them */
 function setHighScore() {
     myHighScore = JSON.parse(localStorage.getItem("playerScore"));
     var myInitials = initials.value;
@@ -353,6 +397,7 @@ function setHighScore() {
     championsArea.style.display = "contents";
 }
 
+// Event Listeners for buttons and choices 
 startButton.addEventListener("click", playGame);
 choice1.addEventListener("click", checkAnswer1);
 choice2.addEventListener("click", checkAnswer2);
