@@ -317,17 +317,14 @@ function nextQuestion() {
     choice3.style.backgroundColor = "#9792E3"
     choice4.style.backgroundColor = "#9792E3"
     i++;
-    if (i === questions.length) {
-        checkQuestions()
-    } else {
-        question.innerText = questions[i].question;
-        choice1.innerText = questions[i].choice1;
-        choice2.innerText = questions[i].choice2;
-        choice3.innerText = questions[i].choice3;
-        choice4.innerText = questions[i].choice4;
-        console.log(questions[i]);
-        return i;
-    }
+    checkQuestions()
+    question.innerText = questions[i].question;
+    choice1.innerText = questions[i].choice1;
+    choice2.innerText = questions[i].choice2;
+    choice3.innerText = questions[i].choice3;
+    choice4.innerText = questions[i].choice4;
+    console.log(questions[i]);
+    return i;
 }
 
 
