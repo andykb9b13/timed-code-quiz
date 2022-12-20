@@ -36,7 +36,7 @@ highScoreDisplay.innerText = "High Score: " + highScore;
 
 function playGame() {
     championsArea.style.display = "none";
-    startHiddenBox.style.display = "contents";
+    startHiddenBox.style.display = "none";
     gameArea.style.display = "contents";
     highScore = localStorage.getItem("highScore");
     highScoreDisplay.innerText = "High Score: " + highScore;
@@ -53,6 +53,7 @@ function playGame() {
         testKnowledge.innerText = "Time Left: " + secondsLeft;
 
     } else {
+        startHiddenBox.style.display = "contents";
         nextQuestion()
         displayAnswer.innerText = "";
         timerInterval = setInterval(function () {
