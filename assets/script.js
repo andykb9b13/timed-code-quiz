@@ -223,8 +223,8 @@ let questions = [
 It resets the initial settings for variables and area displays. 
 It toggles between "start" and "reset" by setting the data-state to "running" or "stopped". 
 If the button is pressed while the state is "running", it will clear the timer and score and  timerInterval and no score will be saved. 
-If it is pressed while the state is "stopped", it will initialize a timer, display the questions. 
-If the timer runs out it will run finalScoreDisplay() and move you to a new screen. 
+If it is pressed while the state is "stopped", it will initialize a timer and display the questions. 
+If the timer runs out it will run finalScoreDisplay() and move the user to a new screen. 
 The score of the current game will be checked against the high score and saved in the highScore variable if it is larger */
 
 function playGame() {
