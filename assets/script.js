@@ -24,60 +24,14 @@ var submitButton = document.querySelector(".submit");
 var championsArea = document.querySelector(".champions-area");
 var championsList = document.querySelector(".champions-list");
 var playAgainButton = document.querySelector(".play-again");
+var myHighScore = [];
+
 startButton.setAttribute("data-state", "stopped");
 currentScore.innerText = "Current Score: " + score;
 endGameArea.style.display = "none";
 championsArea.style.display = "none";
 startHiddenBox.style.display = "none";
 highScoreDisplay.innerText = "High Score: " + highScore;
-
-// TODO need to create a high score page to enter initials.
-// TODO need to use an object to set the local storage for the high scores
-
-function playGame() {
-    championsList.innerHTML = "";
-    championsArea.style.display = "none";
-    startHiddenBox.style.display = "none";
-    gameArea.style.display = "contents";
-    highScore = localStorage.getItem("highScore");
-    highScoreDisplay.innerText = "High Score: " + highScore;
-    if (startButton.dataset.state === "running") {
-        console.log("checking it's stopping")
-        startButton.setAttribute("data-state", "stopped");
-        startButton.style.backgroundColor = "#61E786";
-        startButton.innerText = "Start";
-        clearInterval(timerInterval);
-        score = 0;
-        currentScore.innerText = "Current Score: " + score;
-        secondsLeft = 60;
-        i = -1;
-        testKnowledge.innerText = "Time Left: " + secondsLeft;
-
-    } else {
-        startHiddenBox.style.display = "contents";
-        nextQuestion()
-        displayAnswer.innerText = "";
-        timerInterval = setInterval(function () {
-            if (startButton.dataset.state === "stopped") {
-                console.log("checking it's running");
-                startButton.setAttribute("data-state", "running");
-                startButton.style.backgroundColor = "red";
-                startButton.innerText = "Reset";
-            }
-            secondsLeft--;
-            testKnowledge.innerText = "Time Left: " + secondsLeft;
-            if (secondsLeft <= 0) {
-                finalScoreDisplay();
-                clearInterval(timerInterval);
-                localStorage.getItem("highScore")
-                if (score > highScore) {
-                    localStorage.setItem("highScore", score);
-                }
-            }
-
-        }, 1000)
-    }
-}
 
 let questions = [
     {
@@ -250,11 +204,52 @@ let questions = [
     // }
 ];
 
-function checkQuestions() {
-    if (i === questions.length) {
-        finalScoreDisplay();
+function playGame() {
+    championsList.innerHTML = "";
+    championsArea.style.display = "none";
+    startHiddenBox.style.display = "none";
+    gameArea.style.display = "contents";
+    highScore = localStorage.getItem("highScore");
+    highScoreDisplay.innerText = "High Score: " + highScore;
+    if (startButton.dataset.state === "running") {
+        console.log("checking it's stopping")
+        startButton.setAttribute("data-state", "stopped");
+        startButton.style.backgroundColor = "#61E786";
+        startButton.innerText = "Start";
+        clearInterval(timerInterval);
+        score = 0;
+        currentScore.innerText = "Current Score: " + score;
+        secondsLeft = 60;
+        i = -1;
+        testKnowledge.innerText = "Time Left: " + secondsLeft;
+
+    } else {
+        startHiddenBox.style.display = "contents";
+        nextQuestion()
+        displayAnswer.innerText = "";
+        timerInterval = setInterval(function () {
+            if (startButton.dataset.state === "stopped") {
+                console.log("checking it's running");
+                startButton.setAttribute("data-state", "running");
+                startButton.style.backgroundColor = "red";
+                startButton.innerText = "Reset";
+            }
+            secondsLeft--;
+            testKnowledge.innerText = "Time Left: " + secondsLeft;
+            if (secondsLeft <= 0) {
+                finalScoreDisplay();
+                clearInterval(timerInterval);
+                localStorage.getItem("highScore")
+                if (score > highScore) {
+                    localStorage.setItem("highScore", score);
+                }
+            }
+
+        }, 1000)
     }
 }
+
+
 
 function rightAnswer() {
     displayAnswer.innerText = "CORRECT!";
@@ -308,10 +303,13 @@ function checkAnswer4() {
     }
 }
 
-function nextQuestion() {
-    // i = Math.floor(Math.random() * questions.length);
-    // TODO create a random selector that checks if the index # selected is in an array of pushed index #s
+function checkQuestions() {
+    if (i === questions.length) {
+        finalScoreDisplay();
+    }
+}
 
+function nextQuestion() {
     choice1.style.backgroundColor = "#9792E3"
     choice2.style.backgroundColor = "#9792E3"
     choice3.style.backgroundColor = "#9792E3"
@@ -330,25 +328,12 @@ function nextQuestion() {
     }
 }
 
-
-
 function finalScoreDisplay() {
     gameArea.style.display = "none";
     endGameArea.style.display = "contents";
     finalScore.innerText = "Your final score was: " + score;
     localStorage.setItem("highScore", score);
 }
-
-startButton.addEventListener("click", playGame);
-choice1.addEventListener("click", checkAnswer1);
-choice2.addEventListener("click", checkAnswer2);
-choice3.addEventListener("click", checkAnswer3);
-choice4.addEventListener("click", checkAnswer4);
-submitButton.addEventListener("click", setHighScore)
-playAgainButton.addEventListener("click", playGame)
-
-
-var myHighScore = [];
 
 function setHighScore() {
     myHighScore = JSON.parse(localStorage.getItem("playerScore"));
@@ -375,3 +360,11 @@ function setHighScore() {
     endGameArea.style.display = "none";
     championsArea.style.display = "contents";
 }
+
+startButton.addEventListener("click", playGame);
+choice1.addEventListener("click", checkAnswer1);
+choice2.addEventListener("click", checkAnswer2);
+choice3.addEventListener("click", checkAnswer3);
+choice4.addEventListener("click", checkAnswer4);
+submitButton.addEventListener("click", setHighScore)
+playAgainButton.addEventListener("click", playGame)
