@@ -4,8 +4,7 @@ var choice2 = document.querySelector("#choice2");
 var choice3 = document.querySelector("#choice3");
 var choice4 = document.querySelector("#choice4");
 var guessForm = document.querySelector(".question-card");
-var displayAnswer = document.createElement('p');
-
+var displayAnswer = document.querySelector('.answer');
 var score = 0;
 var currentScore = document.getElementById("current-score");
 var question = document.getElementById("question");
@@ -25,7 +24,6 @@ var championsArea = document.querySelector(".champions-area");
 var championsList = document.querySelector(".champions-list");
 startButton.setAttribute("data-state", "stopped");
 currentScore.innerText = "Current Score: " + score;
-
 endGameArea.style.display = "none";
 championsArea.style.display = "none";
 
@@ -62,13 +60,10 @@ function playGame() {
             testKnowledge.innerText = "Time Left: " + secondsLeft;
             if (secondsLeft <= 0) {
                 finalScoreDisplay();
-                // disableChoices();
                 clearInterval(timerInterval);
-                // testKnowledge.innerText = "Whoa, dude! Better study more!"
                 localStorage.getItem("highScore")
                 if (score > highScore) {
                     localStorage.setItem("highScore", score);
-
                 }
             }
 
@@ -249,7 +244,6 @@ let questions = [
 
 function rightAnswer() {
     displayAnswer.innerText = "CORRECT!";
-    guessForm.appendChild(displayAnswer);
     score += 45;
     currentScore.innerText = "Current Score: " + score;
     nextQuestion();
@@ -257,68 +251,40 @@ function rightAnswer() {
 
 function wrongAnswer() {
     displayAnswer.innerText = "WRONG! The correct answer is: " + questions[i].answer;
-    guessForm.appendChild(displayAnswer);
     secondsLeft -= 5
     nextQuestion();
 }
 
-// function disableChoices() {
-//     choice1.setAttribute("state", "disabled")
-//     choice2.setAttribute("state", "disabled")
-//     choice3.setAttribute("state", "disabled")
-//     choice4.setAttribute("state", "disabled")
-// }
-
-// function enableChoices() {
-//     choice1.setAttribute("state", "enabled")
-//     choice2.setAttribute("state", "enabled")
-//     choice3.setAttribute("state", "enabled")
-//     choice4.setAttribute("state", "enabled")
-// }
-
-
 function checkAnswer1() {
-
     if (questions[i].choice1 === questions[i].answer) {
         rightAnswer()
-
     } else {
         wrongAnswer()
-
-    } disableChoices()
+    }
 }
 
 function checkAnswer2() {
-
     if (questions[i].choice2 === questions[i].answer) {
         rightAnswer()
-
     } else {
         wrongAnswer()
-
-    } disableChoices()
+    }
 }
 
 function checkAnswer3() {
-
     if (questions[i].choice3 === questions[i].answer) {
         rightAnswer()
-
     } else {
         wrongAnswer()
-
-    } disableChoices()
+    }
 }
 
 function checkAnswer4() {
-
     if (questions[i].choice4 === questions[i].answer) {
         rightAnswer()
-
     } else {
         wrongAnswer()
-
-    } disableChoices()
+    }
 }
 
 function nextQuestion() {
@@ -330,7 +296,7 @@ function nextQuestion() {
     choice3.style.backgroundColor = "#9792E3"
     choice4.style.backgroundColor = "#9792E3"
 
-    displayAnswer.innerText = "";
+
     i++;
     question.innerText = questions[i].question;
     choice1.innerText = questions[i].choice1;
