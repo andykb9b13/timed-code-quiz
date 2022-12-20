@@ -336,6 +336,7 @@ function finalScoreDisplay() {
     gameArea.style.display = "none";
     endGameArea.style.display = "contents";
     finalScore.innerText = "Your final score was: " + score;
+    localStorage.setItem("highScore", score);
 }
 
 startButton.addEventListener("click", playGame);
@@ -361,6 +362,11 @@ function setHighScore() {
         myHighScore = [];
         myHighScore.push(nameScore);
         localStorage.setItem("playerScore", JSON.stringify(myHighScore))
+        for (let i = 0; i < myHighScore.length; i++) {
+            newChampion = document.createElement('li');
+            newChampion.innerText = "Player: " + myHighScore[i].name + " " + "Score: " + myHighScore[i].score;
+            championsList.appendChild(newChampion);
+        }
     } else {
 
         myHighScore.push(nameScore);
