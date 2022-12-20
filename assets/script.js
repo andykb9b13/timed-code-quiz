@@ -35,6 +35,7 @@ highScoreDisplay.innerText = "High Score: " + highScore;
 // TODO need to use an object to set the local storage for the high scores
 
 function playGame() {
+    championsList.innerHTML = "";
     championsArea.style.display = "none";
     startHiddenBox.style.display = "none";
     gameArea.style.display = "contents";
