@@ -75,14 +75,6 @@ let questions = [
         answer: "fruits[1]"
     },
     {
-        question: "Which of the following is the right syntax for calling an element with the class name 'first",
-        choice1: "document.querySelector(.first)",
-        choice2: "document.querySelector('.first')",
-        choice3: "document.getClassName(.first)",
-        choice4: "document.getClassName('.first')",
-        answer: "document.querySelector('.first')"
-    },
-    {
         question: "Which best describes JavaScript?",
         choice1: "double-threaded",
         choice2: "triple-threaded",
