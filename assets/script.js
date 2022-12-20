@@ -28,11 +28,10 @@ currentScore.innerText = "Current Score: " + score;
 endGameArea.style.display = "none";
 championsArea.style.display = "none";
 startHiddenBox.style.display = "none";
-// TODO need to create a high score page to enter initials.
-// TODO need to use an object to set the local storage for the high scores
-
 highScoreDisplay.innerText = "High Score: " + highScore;
 
+// TODO need to create a high score page to enter initials.
+// TODO need to use an object to set the local storage for the high scores
 
 function playGame() {
     startHiddenBox.style.display = "contents";
@@ -299,8 +298,6 @@ function nextQuestion() {
     choice2.style.backgroundColor = "#9792E3"
     choice3.style.backgroundColor = "#9792E3"
     choice4.style.backgroundColor = "#9792E3"
-
-
     i++;
     question.innerText = questions[i].question;
     choice1.innerText = questions[i].choice1;
@@ -327,11 +324,15 @@ submitButton.addEventListener("click", setHighScore)
 
 function setHighScore() {
     var myInitials = initials.value;
-    console.log(myInitials);
-    localStorage.setItem("playerInits", myInitials);
+    var myHighScore = {
+        name: myInitials,
+        score: score
+    }
+    console.log(myHighScore);
+    localStorage.setItem("playerScore", myHighScore);
     endGameArea.style.display = "none";
     championsArea.style.display = "contents";
     newChampion = document.createElement('li');
-    newChampion.innerText = myInitials + score;
+    newChampion.innerText = "Player: " + myInitials + " " + "Score: " + score;
     championsList.appendChild(newChampion);
 }
