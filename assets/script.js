@@ -281,10 +281,10 @@ function checkAnswer1() {
 
     if (questions[i].choice1 === questions[i].answer) {
         rightAnswer()
-        choice1.style.backgroundColor = "#61E786"
+
     } else {
         wrongAnswer()
-        choice1.style.backgroundColor = "red"
+
     } disableChoices()
 }
 
@@ -292,10 +292,10 @@ function checkAnswer2() {
 
     if (questions[i].choice2 === questions[i].answer) {
         rightAnswer()
-        choice2.style.backgroundColor = "#61E786"
+
     } else {
         wrongAnswer()
-        choice2.style.backgroundColor = "red"
+
     } disableChoices()
 }
 
@@ -303,10 +303,10 @@ function checkAnswer3() {
 
     if (questions[i].choice3 === questions[i].answer) {
         rightAnswer()
-        choice3.style.backgroundColor = "#61E786"
+
     } else {
         wrongAnswer()
-        choice3.style.backgroundColor = "red"
+
     } disableChoices()
 }
 
@@ -314,10 +314,10 @@ function checkAnswer4() {
 
     if (questions[i].choice4 === questions[i].answer) {
         rightAnswer()
-        choice4.style.backgroundColor = "#61E786"
+
     } else {
         wrongAnswer()
-        choice4.style.backgroundColor = "red"
+
     } disableChoices()
 }
 
