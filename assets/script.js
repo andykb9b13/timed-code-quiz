@@ -16,11 +16,11 @@ var choice3 = document.querySelector("#choice3");
 var choice4 = document.querySelector("#choice4");
 var displayAnswer = document.querySelector('.answer');
 
-// *********** Initials input at the end *****************
-var initials = document.querySelector("#initials");
+// *********** Name input at the end *****************
+var nameInput = document.querySelector("#nameInput");
 
 // *********** The timer element *********************
-var testKnowledge = document.getElementById('testKnowledge');
+var timerDisplay = document.getElementById('timerDisplay');
 
 // *********** Scores **********************
 var highScore = localStorage.getItem("highScore");
@@ -244,7 +244,7 @@ function playGame() {
         currentScore.innerText = "Current Score: " + score;
         secondsLeft = 60;
         i = -1;
-        testKnowledge.innerText = "Time Left: " + secondsLeft;
+        timerDisplay.innerText = "Time Left: " + secondsLeft;
 
     } else {
         startHiddenBox.style.display = "contents";
@@ -258,7 +258,7 @@ function playGame() {
                 startButton.innerText = "Reset";
             }
             secondsLeft--;
-            testKnowledge.innerText = "Time Left: " + secondsLeft;
+            timerDisplay.innerText = "Time Left: " + secondsLeft;
             if (secondsLeft <= 0) {
                 finalScoreDisplay();
                 clearInterval(timerInterval);
@@ -290,20 +290,20 @@ function wrongAnswer() {
     nextQuestion();
 }
 
-/* The checkQuestions() function checks to see if the current value of i is equal to the length of the array of questions
+/* The isLastQuestion() function checks to see if the current value of i is equal to the length of the array of questions
 If it returns true, it fires finalScoreDisplay(), which will take you to a new screen */
-function checkQuestions() {
+function isLastQuestion() {
     if (i === questions.length) {
         finalScoreDisplay();
     }
 }
 /* The checkAnswer() function checks the value of the choice selected against the value of the answer
-It fires checkQuestions() before checking the values.
+It fires isLastQuestion() before checking the values.
 If it returns true, it fires rightAnswer() and if it is false it fires wrongAnswer()
 */
 
 function checkAnswer1() {
-    checkQuestions()
+    isLastQuestion()
     if (questions[i].choice1 === questions[i].answer) {
         rightAnswer()
     } else {
@@ -313,7 +313,7 @@ function checkAnswer1() {
 }
 
 function checkAnswer2() {
-    checkQuestions()
+    isLastQuestion()
     if (questions[i].choice2 === questions[i].answer) {
         rightAnswer()
     } else {
@@ -322,7 +322,7 @@ function checkAnswer2() {
 }
 
 function checkAnswer3() {
-    checkQuestions()
+    isLastQuestion()
     if (questions[i].choice3 === questions[i].answer) {
         rightAnswer()
     } else {
@@ -332,7 +332,7 @@ function checkAnswer3() {
 }
 
 function checkAnswer4() {
-    checkQuestions()
+    isLastQuestion()
     if (questions[i].choice4 === questions[i].answer) {
         rightAnswer()
 
@@ -348,7 +348,7 @@ It dislays the values of question[i] for the user on the screen.
 function nextQuestion() {
     i++;
     if (i === questions.length) {
-        checkQuestions()
+        isLastQuestion()
     } else {
         question.innerText = questions[i].question;
         choice1.innerText = questions[i].choice1;
@@ -373,7 +373,7 @@ It captures the users name input and score and stores it as JSON.
 createChampionsList() creates the HTML elements on the page and sets the values from localStorage to them */
 function setHighScore() {
     myHighScore = JSON.parse(localStorage.getItem("playerScore"));
-    var myInitials = initials.value;
+    var myInitials = nameInput.value;
     var nameScore = {
         name: myInitials,
         score: score

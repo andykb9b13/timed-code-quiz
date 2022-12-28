@@ -136,7 +136,7 @@ h2 {
 }
 
 /* ********* styling the end game area and champions area ******** */
-.initials-input,
+.name-input,
 .champions {
     display: flex;
     flex-direction: column;
@@ -144,17 +144,17 @@ h2 {
     margin: 5%;
 }
 
-.initials-input *,
+.name-input *,
 .champions * {
     margin: 10px;
 }
 
-.initials-input button,
+.name-input button,
 .champions button {
     font-size: 1em;
 }
 
-.initials-input input {
+.name-input input {
     width: 150px;
     font-size: 1.2em;
 }
