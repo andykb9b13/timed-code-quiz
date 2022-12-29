@@ -9,44 +9,44 @@
  *****************************************************************************************/
 
 // *********** The question, choice, and answer elements that will display ********
-var question = document.getElementById("question");
-var choice1 = document.querySelector("#choice1");
-var choice2 = document.querySelector("#choice2");
-var choice3 = document.querySelector("#choice3");
-var choice4 = document.querySelector("#choice4");
-var displayAnswer = document.querySelector('.answer');
+let question = document.getElementById("question");
+let choice1 = document.querySelector("#choice1");
+let choice2 = document.querySelector("#choice2");
+let choice3 = document.querySelector("#choice3");
+let choice4 = document.querySelector("#choice4");
+let displayAnswer = document.querySelector('.answer');
 
 // *********** Name input at the end *****************
-var nameInput = document.querySelector("#nameInput");
+let nameInput = document.querySelector("#nameInput");
 
 // *********** The timer element *********************
-var timerDisplay = document.getElementById('timerDisplay');
+let timerDisplay = document.getElementById('timerDisplay');
 
 // *********** Scores **********************
-var highScore = localStorage.getItem("highScore");
-var finalScore = document.querySelector(".final-score");
-var currentScore = document.getElementById("current-score");
+let highScore = localStorage.getItem("highScore");
+let finalScore = document.querySelector(".final-score");
+let currentScore = document.getElementById("current-score");
 
 // *********** Sections and areas in html to be hidden and displayed ***************
-var guessForm = document.querySelector(".question-card");
-var startHiddenBox = document.querySelector(".start-hidden");
-var gameArea = document.querySelector(".game-area");
-var endGameArea = document.querySelector(".end-game-area");
-var championsArea = document.querySelector(".champions-area");
-var championsList = document.querySelector(".champions-list");
-var highScoreDisplay = document.getElementById("high-score");
+let guessForm = document.querySelector(".question-card");
+let startHiddenBox = document.querySelector(".start-hidden");
+let gameArea = document.querySelector(".game-area");
+let endGameArea = document.querySelector(".end-game-area");
+let championsArea = document.querySelector(".champions-area");
+let championsList = document.querySelector(".champions-list");
+let highScoreDisplay = document.getElementById("high-score");
 
 // *********** Buttons ****************
-var startButton = document.getElementById('start-button');
-var submitButton = document.querySelector(".submit");
-var playAgainButton = document.querySelector(".play-again");
+let startButton = document.getElementById('start-button');
+let submitButton = document.querySelector(".submit");
+let playAgainButton = document.querySelector(".play-again");
 
 // ************ Initial settings **************
-var timerInterval = '';
-var score = 0;
-var myHighScore = [];
-var i = -1;
-var secondsLeft = 60;
+let timerInterval = '';
+let score = 0;
+let myHighScore = [];
+let i = -1;
+let secondsLeft = 60;
 startButton.setAttribute("data-state", "stopped");
 currentScore.innerText = "Current Score: " + score;
 endGameArea.style.display = "none";
@@ -373,8 +373,8 @@ It captures the users name input and score and stores it as JSON.
 createChampionsList() creates the HTML elements on the page and sets the values from localStorage to them */
 function setHighScore() {
     myHighScore = JSON.parse(localStorage.getItem("playerScore"));
-    var myInitials = nameInput.value;
-    var nameScore = {
+    let myInitials = nameInput.value;
+    let nameScore = {
         name: myInitials,
         score: score
     }
